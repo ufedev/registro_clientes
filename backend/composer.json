@@ -1,0 +1,18 @@
+{
+    "name": "federicomalfasi/proyecto-telecom",
+    "autoload": {
+        "psr-4": {
+            "Models\\": "./models",
+            "Controllers\\": "./controllers"
+        }
+    },
+    "authors": [
+        {
+            "name": "Federico Malfasi",
+            "email": "Federico.malfasi@gmail.com"
+        }
+    ],
+    "require": {
+        "ufedev/uff": "^0.1.0"
+    }
+}

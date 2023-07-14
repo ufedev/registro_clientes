@@ -1,0 +1,64 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "86970a346fb31e55fea33c2a0b0a715a",
+    "packages": [
+        {
+            "name": "ufedev/uff",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ufedev/uff.git",
+                "reference": "5abcf020f0d17ff7c38a7d175616072365a7b06f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ufedev/uff/zipball/5abcf020f0d17ff7c38a7d175616072365a7b06f",
+                "reference": "5abcf020f0d17ff7c38a7d175616072365a7b06f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/snippets.php"
+                ],
+                "psr-4": {
+                    "Uff\\": "src/uff"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Federico Malfasi",
+                    "email": "federico.malfasi@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Framework like Express for PHP Stable Version",
+            "homepage": "https://github.com/ufedev/ufexpress",
+            "support": {
+                "issues": "https://github.com/ufedev/uff/issues",
+                "source": "https://github.com/ufedev/uff/tree/v0.1"
+            },
+            "time": "2023-04-16T03:15:48+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
