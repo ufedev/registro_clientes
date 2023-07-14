@@ -1,105 +1,108 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
-import Swal from "sweetalert2";
+import { useState, useEffect } from "react"
+import Swal from "sweetalert2"
 
 const Modal = ({ cliente, setCliente, obtenerClientes, setModal }) => {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
-  const [dni, setDni] = useState("");
-  const [sexo, setSexo] = useState("");
-  const [telefono, setTelefono] = useState("");
+  const [nombre, setNombre] = useState("")
+  const [apellido, setApellido] = useState("")
+  const [dni, setDni] = useState("")
+  const [sexo, setSexo] = useState("")
+  const [telefono, setTelefono] = useState("")
+  const [dniEdicion, setDniEdicion] = useState("")
 
   useEffect(() => {
     const cargarCliente = async () => {
       if (Object.keys(cliente).length > 0) {
-        setNombre(cliente?.nombre);
-        setApellido(cliente?.apellido);
-        setDni(cliente?.dni);
-        setSexo(cliente?.sexo);
-        setTelefono(cliente?.telefono);
+        setNombre(cliente?.nombre)
+        setApellido(cliente?.apellido)
+        setDni(cliente?.dni)
+        setDniEdicion(cliente?.dni)
+
+        setSexo(cliente?.sexo)
+        setTelefono(cliente?.telefono)
       }
-    };
-    cargarCliente();
-  }, []);
+    }
+    cargarCliente()
+  }, [])
 
   const crearCliente = async () => {
     try {
-      const url = `${import.meta.env.VITE_BASE_URL}/create_client`;
+      const url = `${import.meta.env.VITE_BASE_URL}/create_client`
       const config = {
         method: "POST",
         body: JSON.stringify({ nombre, apellido, dni, sexo, telefono }),
-      };
-      const req = await fetch(url, config);
+      }
+      const req = await fetch(url, config)
       if (req.ok) {
         Swal.fire({
           text: "Cliente Agregado",
           icon: "success",
         }).then(({ isConfirmed }) => {
           if (isConfirmed) {
-            obtenerClientes();
-            setModal(false);
+            obtenerClientes()
+            setModal(false)
           }
-        });
+        })
 
-        return;
+        return
       }
-      const res = await req.json();
+      const res = await req.json()
 
       const html = res.errors.reduce((acc, curr) => {
-        acc += `<p class='block'>${curr}</p>`;
-        return acc;
-      }, "");
+        acc += `<p class='block'>${curr}</p>`
+        return acc
+      }, "")
 
       Swal.fire({
         title: "Error",
         icon: "error",
         html: html,
-      });
+      })
     } catch (e) {
-      Swal.fire("Hubo un error");
+      Swal.fire("Hubo un error")
     }
-  };
+  }
 
   const actualizarCliente = async () => {
     try {
-      const url = `${import.meta.env.VITE_BASE_URL}/update_client/${dni}`;
+      const url = `${import.meta.env.VITE_BASE_URL}/update_client/${dniEdicion}`
       const config = {
         method: "PUT",
         body: JSON.stringify({ nombre, apellido, sexo, telefono }),
-      };
-      const req = await fetch(url, config);
+      }
+      const req = await fetch(url, config)
       if (req.ok) {
         Swal.fire({
           text: "Cliente Actualizado",
           icon: "success",
         }).then(({ isConfirmed }) => {
           if (isConfirmed) {
-            obtenerClientes();
-            setModal(false);
-            setCliente({});
+            obtenerClientes()
+            setModal(false)
+            setCliente({})
           }
-        });
+        })
 
-        return;
+        return
       }
-      const res = await req.json();
+      const res = await req.json()
 
       const html = res.errors.reduce((acc, curr) => {
-        acc += `<p class='block'>${curr}</p>`;
-        return acc;
-      }, "");
+        acc += `<p class='block'>${curr}</p>`
+        return acc
+      }, "")
 
       Swal.fire({
         title: "Error",
         icon: "error",
         html: html,
-      });
+      })
     } catch (e) {
-      Swal.fire("Hubo un error");
+      Swal.fire("Hubo un error")
     }
-  };
+  }
 
   return (
     <div className="absolute w-full h-full top-0 left-0 flex justify-center items-center z-50 backdrop-blur-md">
@@ -111,8 +114,8 @@ const Modal = ({ cliente, setCliente, obtenerClientes, setModal }) => {
               className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
               data-modal-hide="authentication-modal"
               onClick={() => {
-                setModal(false);
-                setCliente({});
+                setModal(false)
+                setCliente({})
               }}
             >
               <svg
@@ -140,11 +143,11 @@ const Modal = ({ cliente, setCliente, obtenerClientes, setModal }) => {
                 className="space-y-6"
                 action="#"
                 onSubmit={(e) => {
-                  e.preventDefault();
+                  e.preventDefault()
                   if (cliente?.id) {
-                    actualizarCliente();
+                    actualizarCliente()
                   } else {
-                    crearCliente();
+                    crearCliente()
                   }
                 }}
               >
@@ -199,7 +202,8 @@ const Modal = ({ cliente, setCliente, obtenerClientes, setModal }) => {
                     placeholder="33xxxxxxx"
                     value={dni}
                     onChange={(e) => setDni(e.target.value)}
-                    required
+                    required={!cliente?.id && true}
+                    disabled={cliente?.id && true}
                   />
                 </div>
                 <div>
@@ -251,7 +255,7 @@ const Modal = ({ cliente, setCliente, obtenerClientes, setModal }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

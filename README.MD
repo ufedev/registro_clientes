@@ -99,3 +99,5 @@ VITE_BASE_URL='http://localhost:8000'
 - El sistema de busquedas solo lo hace por DNI - Es en tiempo real. Los clientes estan ordenados alfabéticamente por el apellido
 
 ❗ Las busquedas son en tiempo real.
+
+❗ **_Al ser clave unica el DNI no puede modificarse desde la pestaña de edición_**
