@@ -134,6 +134,8 @@ final class Clients
     }
     public static function find(): array
     {
+        self::create_table();
+
         $clientes = [];
         $qry = "SELECT * FROM " . self::$table;
         $result = self::$db->query($qry);

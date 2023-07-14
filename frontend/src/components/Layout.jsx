@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import Swal from "sweetalert2";
 import Main from "./Main";
 import Modal from "./Modal";
 
@@ -21,7 +21,10 @@ const Layout = () => {
         setClientes(res);
       }
     } catch (err) {
-      console.log(err);
+      Swal.fire({
+        title: "Hubo un Error",
+        text: "Debe crear la base de datos",
+      });
     }
   };
 

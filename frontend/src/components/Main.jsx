@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import Cliente from "./Cliente";
-
+import Lista from "./Lista";
 const Main = ({ setModal, setCliente, clientes, obtenerClientes }) => {
   const [filtro, setFiltro] = useState([]);
   const [busqueda, setBusqueda] = useState("");
@@ -79,25 +80,21 @@ const Main = ({ setModal, setCliente, clientes, obtenerClientes }) => {
               </tr>
             </thead>
             <tbody>
-              {busqueda === ""
-                ? clientes?.map((cliente) => (
-                    <Cliente
-                      key={cliente.id}
-                      cliente={cliente}
-                      setModal={setModal}
-                      setCliente={setCliente}
-                      obtenerClientes={obtenerClientes}
-                    />
-                  ))
-                : filtro?.map((cliente) => (
-                    <Cliente
-                      key={cliente.id}
-                      cliente={cliente}
-                      setModal={setModal}
-                      setCliente={setCliente}
-                      obtenerClientes={obtenerClientes}
-                    />
-                  ))}
+              {busqueda === "" ? (
+                <Lista
+                  clientes={clientes}
+                  setModal={setModal}
+                  setCliente={setCliente}
+                  obtenerClientes={obtenerClientes}
+                />
+              ) : (
+                <Lista
+                  clientes={filtro}
+                  setModal={setModal}
+                  setCliente={setCliente}
+                  obtenerClientes={obtenerClientes}
+                />
+              )}
             </tbody>
           </table>
         </div>
